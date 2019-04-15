@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">mtg-collection-app</string>
+    <string name="title_magic_the_gathering">Magic the Gathering</string>
+    <string name="title_collection">COLLECTION</string>
+    <string name="button_login">Log in</string>
+    <string name="switch_info">STAY LOGGED IN</string>
+    <string name="credits">By Ztrider</string>
+    <string name="login_username">Username</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
 </resources>
