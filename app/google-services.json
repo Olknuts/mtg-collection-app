@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "313104099745",
+    "firebase_url": "https://mtg-collection-94e63.firebaseio.com",
+    "project_id": "mtg-collection-94e63",
+    "storage_bucket": "mtg-collection-94e63.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:313104099745:android:dd61b1346518097e",
+        "android_client_info": {
+          "package_name": "se.dala.mtg_collection_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "313104099745-ga2d9m48rim3icesl7kr9ka23ipmtuk8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYXapZ2I1wWBCzphGerat35RF79eliEFs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "313104099745-ga2d9m48rim3icesl7kr9ka23ipmtuk8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
