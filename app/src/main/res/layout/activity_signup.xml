@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context=".SignupActivity">
+
+    <View
+    android:id="@+id/view2"
+    style="@style/Divider"
+    android:layout_width="310sp"
+    android:layout_height="1dp"
+    android:layout_marginTop="13dp"
+    android:background="@color/colorText"
+    app:layout_constraintEnd_toEndOf="@+id/textView"
+    app:layout_constraintStart_toStartOf="@+id/textView"
+    app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+    <View
+    android:id="@+id/view3"
+    style="@style/Divider"
+    android:layout_width="310sp"
+    android:layout_height="1dp"
+    android:layout_marginTop="5dp"
+    android:background="@color/colorText"
+    app:layout_constraintEnd_toEndOf="@+id/view2"
+    app:layout_constraintStart_toStartOf="@+id/view2"
+    app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+    android:id="@+id/textView2"
+    android:layout_width="wrap_content"
+    android:layout_height="56dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:fontFamily="@font/bree_serif"
+
+    android:includeFontPadding="false"
+    android:text="@string/title_collection"
+    android:textColor="@color/colorText"
+    android:textSize="50sp"
+
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+    android:id="@+id/textView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="60dp"
+    android:layout_marginEnd="8dp"
+
+    android:fontFamily="@font/bree_serif"
+    android:letterSpacing="-0.05"
+    android:text="@string/title_magic_the_gathering"
+    android:textColor="@color/colorText"
+    android:textSize="40sp"
+
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.482"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="252dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/colorText"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorText"
+        android:hint="@string/username"
+        android:textColorHint="@color/colorTextHint"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="8dp"
+
+        android:backgroundTint="@color/colorText"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:textColor="@color/colorText"
+        android:textColorHint="@color/colorTextHint"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="56dp"
+
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/colorText"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:textColor="@color/colorText"
+
+        android:textColorHint="@color/colorTextHint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_a_valid_email_adress"
+        android:textColor="@color/colorText"
+        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintStart_toStartOf="@+id/editText" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_a_password"
+        android:textColor="@color/colorText"
+        app:layout_constraintBottom_toTopOf="@+id/editText2"
+        app:layout_constraintStart_toStartOf="@+id/editText2" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/validate_password"
+        android:textColor="@color/colorText"
+        app:layout_constraintBottom_toTopOf="@+id/editText3"
+        app:layout_constraintStart_toStartOf="@+id/editText3" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="177dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="44dp"
+
+        android:layout_marginEnd="8dp"
+        android:background="@color/colorButton"
+        android:bottomLeftRadius="10dp"
+
+        android:bottomRightRadius="10dp"
+        android:text="@string/sign_up"
+        android:textColor="@color/colorText"
+        android:topLeftRadius="10dp"
+
+        android:topRightRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+
+        android:text="@string/credits"
+        android:fontFamily="@font/bree_serif"
+        android:textColor="@color/colorText"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
