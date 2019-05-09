@@ -16,9 +16,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class SignupActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
-    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    private static final String LOG_TAG = SignInActivity.class.getSimpleName();
     private FirebaseAuth mAuth;
     private final String authFailed = "Authentication Failed.";
     private final String authConfirmed = "Authentication Success.";
@@ -29,9 +29,9 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.activity_sign_up);
         mAuth = FirebaseAuth.getInstance();
-        toast = Toast.makeText(SignupActivity.this, "",
+        toast = Toast.makeText(SignUpActivity.this, "",
                 Toast.LENGTH_LONG);
     }
 

@@ -22,9 +22,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity {
 
-    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    private static final String LOG_TAG = SignInActivity.class.getSimpleName();
     private FirebaseAuth authentication;
     private final String authFailed = "Authentication Failed.";
     private final String authConfirmed = "Authentication Success.";
@@ -35,11 +35,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_sign_in);
         setClickableText();
 
         authentication = FirebaseAuth.getInstance();
-        toast = Toast.makeText(MainActivity.this, "",
+        toast = Toast.makeText(SignInActivity.this, "",
                 Toast.LENGTH_LONG);
     }
 
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         ClickableSpan clickable = new ClickableSpan() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), SignupActivity.class);
+                Intent intent = new Intent(view.getContext(), SignUpActivity.class);
                 startActivity(intent);
             }
         };

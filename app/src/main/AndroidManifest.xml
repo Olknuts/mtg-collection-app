@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".CollectionHomeActivity"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,11 +18,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignupActivity"
-            android:parentActivityName=".MainActivity">
+            android:name=".SignUpActivity"
+            android:parentActivityName=".SignInActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="se.dala.mtg_collection_app.MainActivity" />
+                android:value="se.dala.mtg_collection_app.SignInActivity" />
         </activity>
     </application>
 
