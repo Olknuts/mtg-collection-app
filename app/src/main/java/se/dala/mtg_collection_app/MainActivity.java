@@ -36,7 +36,14 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+        setClickableText();
 
+        authentication = FirebaseAuth.getInstance();
+        toast = Toast.makeText(MainActivity.this, "",
+                Toast.LENGTH_LONG);
+    }
+
+    private void setClickableText() {
         TextView signupText = findViewById(R.id.signupText);
         SpannableString text = new SpannableString("Click here to signup");
 
@@ -52,17 +59,13 @@ public class MainActivity extends AppCompatActivity {
         text.setSpan(clickColor, 6, 10, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         signupText.setText(text);
         signupText.setMovementMethod(LinkMovementMethod.getInstance());
-
-        authentication = FirebaseAuth.getInstance();
-        toast = Toast.makeText(MainActivity.this, "",
-                Toast.LENGTH_LONG);
     }
 
     @Override
     public void onStart() {
         super.onStart();
         FirebaseUser currentUser = authentication.getCurrentUser();
-        updateUI(currentUser);
+        updateScreen(currentUser);
     }
 
     public void startSecondActivity(View view) {
@@ -78,17 +81,17 @@ public class MainActivity extends AppCompatActivity {
                             FirebaseUser user = authentication.getCurrentUser();
                             Log.i(LOG_TAG, "Sign in with email: Success");
                             setToastText(authConfirmed);
-                            updateUI(user);
+                            updateScreen(user);
                         } else {
                             Log.w(LOG_TAG, "Sign in with email: Failed", task.getException());
                             setToastText(authFailed).show();
-                            updateUI(null);
+                            updateScreen(null);
                         }
                     }
                 });
     }
 
-    public void updateUI(FirebaseUser user) {
+    public void updateScreen(FirebaseUser user) {
         if(user != null) {
             Intent intent = new Intent(this, CollectionHomeActivity.class);
             startActivity(intent);
