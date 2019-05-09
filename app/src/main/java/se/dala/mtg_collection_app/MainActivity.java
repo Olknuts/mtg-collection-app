@@ -25,7 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
-    private FirebaseAuth mAuth;
+    private FirebaseAuth authentication;
     private final String authFailed = "Authentication Failed.";
     private final String authConfirmed = "Authentication Success.";
     private Toast toast;
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         signupText.setText(text);
         signupText.setMovementMethod(LinkMovementMethod.getInstance());
 
-        mAuth = FirebaseAuth.getInstance();
+        authentication = FirebaseAuth.getInstance();
         toast = Toast.makeText(MainActivity.this, "",
                 Toast.LENGTH_LONG);
     }
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        FirebaseUser currentUser = authentication.getCurrentUser();
         updateUI(currentUser);
     }
 
@@ -70,19 +70,17 @@ public class MainActivity extends AppCompatActivity {
         EditText passwordInput = findViewById(R.id.password);
         String userName = userNameInput.getText().toString();
         String password = passwordInput.getText().toString();
-        mAuth.signInWithEmailAndPassword(userName, password)
+        authentication.signInWithEmailAndPassword(userName, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            // If sign in succeeds, display a message(toast) to the user.
-                            Log.i(LOG_TAG, "signInWithEmail: success");
+                            FirebaseUser user = authentication.getCurrentUser();
+                            Log.i(LOG_TAG, "Sign in with email: Success");
                             setToastText(authConfirmed);
                             updateUI(user);
                         } else {
-                            // If sign in fails, display a message(toast) to the user.
-                            Log.w(LOG_TAG, "signInWithEmail: failure", task.getException());
+                            Log.w(LOG_TAG, "Sign in with email: Failed", task.getException());
                             setToastText(authFailed).show();
                             updateUI(null);
                         }

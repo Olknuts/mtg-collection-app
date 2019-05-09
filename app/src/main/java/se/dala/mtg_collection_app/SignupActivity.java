@@ -48,7 +48,16 @@ public class SignupActivity extends AppCompatActivity {
         EditText passwordValidationInput = findViewById(R.id.validation);
         String userName = userNameInput.getText().toString();
         String password = passwordInput.getText().toString();
-        String validation = passwordValidationInput.getText().toString();
+        String passwordValidation = passwordValidationInput.getText().toString();
+        if (validateSignupCredentials(
+                userNameInput.getText().toString(),
+                passwordInput.getText().toString(),
+                passwordValidationInput.getText().toString())) {
+
+        } else {
+
+        }
+
         mAuth.createUserWithEmailAndPassword(userName, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -74,6 +83,15 @@ public class SignupActivity extends AppCompatActivity {
             Intent intent = new Intent(this, CollectionHomeActivity.class);
             startActivity(intent);
         }
+    }
+
+    private boolean validateSignupCredentials(String username, String password, String passwordValidation) {
+        //Todo Implement username validation.
+        return validatePassword(password, passwordValidation);
+    }
+
+    private boolean validatePassword(String password, String passwordValidation) {
+        return password.equals(passwordValidation);
     }
 
     private Toast setToastText(String text) {
