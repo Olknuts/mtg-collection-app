@@ -22,9 +22,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity {
 
-    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    private static final String LOG_TAG = SignInActivity.class.getSimpleName();
     private FirebaseAuth authentication;
     private final String authFailed = "Authentication Failed.";
     private final String authConfirmed = "Authentication Success.";
@@ -35,8 +35,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_sign_in);
+        setClickableText();
 
+        authentication = FirebaseAuth.getInstance();
+        toast = Toast.makeText(SignInActivity.this, "",
+                Toast.LENGTH_LONG);
+    }
+
+    private void setClickableText() {
         TextView signupText = findViewById(R.id.signupText);
         SpannableString text = new SpannableString("Click here to signup");
 
@@ -44,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         ClickableSpan clickable = new ClickableSpan() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), SignupActivity.class);
+                Intent intent = new Intent(view.getContext(), SignUpActivity.class);
                 startActivity(intent);
             }
         };
@@ -52,17 +59,13 @@ public class MainActivity extends AppCompatActivity {
         text.setSpan(clickColor, 6, 10, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         signupText.setText(text);
         signupText.setMovementMethod(LinkMovementMethod.getInstance());
-
-        authentication = FirebaseAuth.getInstance();
-        toast = Toast.makeText(MainActivity.this, "",
-                Toast.LENGTH_LONG);
     }
 
     @Override
     public void onStart() {
         super.onStart();
         FirebaseUser currentUser = authentication.getCurrentUser();
-        updateUI(currentUser);
+        updateScreen(currentUser);
     }
 
     public void startSecondActivity(View view) {
@@ -78,17 +81,17 @@ public class MainActivity extends AppCompatActivity {
                             FirebaseUser user = authentication.getCurrentUser();
                             Log.i(LOG_TAG, "Sign in with email: Success");
                             setToastText(authConfirmed);
-                            updateUI(user);
+                            updateScreen(user);
                         } else {
                             Log.w(LOG_TAG, "Sign in with email: Failed", task.getException());
                             setToastText(authFailed).show();
-                            updateUI(null);
+                            updateScreen(null);
                         }
                     }
                 });
     }
 
-    public void updateUI(FirebaseUser user) {
+    public void updateScreen(FirebaseUser user) {
         if(user != null) {
             Intent intent = new Intent(this, CollectionHomeActivity.class);
             startActivity(intent);

@@ -16,9 +16,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class SignupActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
-    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    private static final String LOG_TAG = SignInActivity.class.getSimpleName();
     private FirebaseAuth mAuth;
     private final String authFailed = "Authentication Failed.";
     private final String authConfirmed = "Authentication Success.";
@@ -29,9 +29,9 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.activity_sign_up);
         mAuth = FirebaseAuth.getInstance();
-        toast = Toast.makeText(SignupActivity.this, "",
+        toast = Toast.makeText(SignUpActivity.this, "",
                 Toast.LENGTH_LONG);
     }
 
@@ -49,33 +49,30 @@ public class SignupActivity extends AppCompatActivity {
         String userName = userNameInput.getText().toString();
         String password = passwordInput.getText().toString();
         String passwordValidation = passwordValidationInput.getText().toString();
-        if (validateSignupCredentials(
-                userNameInput.getText().toString(),
-                passwordInput.getText().toString(),
-                passwordValidationInput.getText().toString())) {
-
+        if (validateSignupCredentials(userName, password, passwordValidation)) {
+            mAuth.createUserWithEmailAndPassword(userName, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                // If sign in succeeds, display a message(toast) to the user.
+                                Log.i(LOG_TAG, "signInWithEmail: success");
+                                setToastText(authConfirmed);
+                                updateUI(user);
+                            } else {
+                                // If sign in fails, display a message(toast) to the user.
+                                Log.w(LOG_TAG, "signInWithEmail: failure", task.getException());
+                                setToastText(authFailed).show();
+                                updateUI(null);
+                            }
+                        }
+                    });
         } else {
-
+            //Todo Make text visable: Passwords don't match
         }
 
-        mAuth.createUserWithEmailAndPassword(userName, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            // If sign in succeeds, display a message(toast) to the user.
-                            Log.i(LOG_TAG, "signInWithEmail: success");
-                            setToastText(authConfirmed);
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message(toast) to the user.
-                            Log.w(LOG_TAG, "signInWithEmail: failure", task.getException());
-                            setToastText(authFailed).show();
-                            updateUI(null);
-                        }
-                    }
-                });
+
     }
 
     public void updateUI(FirebaseUser user) {
