@@ -1,29 +1,33 @@
-package se.dala.mtg_collection_app;
+package se.dala.mtg_collection_app.activity.views;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
+import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
 
-public class CustomTextView extends android.support.v7.widget.AppCompatTextView {
-    public CustomTextView(Context context) {
+import se.dala.mtg_collection_app.R;
+
+public class CustomButton extends AppCompatButton {
+
+    public CustomButton(Context context) {
         super(context);
         init(null);
     }
 
-    public CustomTextView(Context context,  AttributeSet attrs) {
+    public CustomButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs);
     }
 
-    public CustomTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CustomButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(attrs);
     }
 
     private void init(AttributeSet attrs) {
         if (attrs != null) {
-            TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.CustomTextView_font);
+            TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.CustomButtonText_font);
             String fontName = a.getString(0);
             try {
                 if (fontName != null) {

@@ -22,6 +22,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import se.dala.mtg_collection_app.activity.CollectionHomeActivity;
+import se.dala.mtg_collection_app.activity.SignUpActivity;
+
 public class SignInActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = SignInActivity.class.getSimpleName();

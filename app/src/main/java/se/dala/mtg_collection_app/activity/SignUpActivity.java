@@ -1,4 +1,4 @@
-package se.dala.mtg_collection_app;
+package se.dala.mtg_collection_app.activity;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -15,6 +15,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import se.dala.mtg_collection_app.R;
+import se.dala.mtg_collection_app.SignInActivity;
 
 public class SignUpActivity extends AppCompatActivity {
 

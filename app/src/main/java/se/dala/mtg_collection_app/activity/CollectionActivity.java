@@ -1,8 +1,10 @@
-package se.dala.mtg_collection_app;
+package se.dala.mtg_collection_app.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
+
+import se.dala.mtg_collection_app.R;
 
 public class CollectionActivity extends AppCompatActivity {
 
