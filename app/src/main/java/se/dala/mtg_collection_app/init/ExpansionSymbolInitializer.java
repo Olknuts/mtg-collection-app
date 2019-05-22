@@ -49,6 +49,7 @@ public class ExpansionSymbolInitializer {
         expansionName.add("dgm");
         expansionName.add("ths");
         expansionName.add("bng");
+        expansionName.add("jou");
         expansionName.add("ktk");
         expansionName.add("frf");
         expansionName.add("cns");

@@ -53,6 +53,7 @@ public class GridSymbolAdapter extends BaseAdapter {
         ExpansionSymbol symbol = expansionSymbols.get(position);
         CustomButton button = view.findViewById(R.id.buttontest);
         button.setText(symbol.getSymbol());
+        button.setTag(symbol.getName());
         return view;
     }
 }

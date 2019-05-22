@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.GridView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +27,7 @@ import java.util.List;
 import se.dala.mtg_collection_app.R;
 import se.dala.mtg_collection_app.SignInActivity;
 import se.dala.mtg_collection_app.activity.adapters.GridSymbolAdapter;
+import se.dala.mtg_collection_app.activity.views.CustomButton;
 import se.dala.mtg_collection_app.init.ExpansionSymbolInitializer;
 import se.dala.mtg_collection_app.model.Expansion;
 import se.dala.mtg_collection_app.model.ExpansionSymbol;
@@ -35,6 +37,8 @@ public class CollectionHomeActivity extends AppCompatActivity {
     private FirebaseAuth authentication;
     private FirebaseUser currentUser;
     private List<String> sets = new ArrayList<>();
+    private List<ExpansionSymbol> expansionSymbols;
+    List<Button> buttonsInGrid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,7 @@ public class CollectionHomeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitle("");
         toolbar.setSubtitle("");
+        expansionSymbols = ExpansionSymbolInitializer.symbolInitializer(CollectionHomeActivity.this);
         updateUI();
     }
 
@@ -58,9 +63,9 @@ public class CollectionHomeActivity extends AppCompatActivity {
             @Override
             public void run() {
                 GridView gridView = findViewById(R.id.mainGrid);
-                List<ExpansionSymbol> expansionSymbols = ExpansionSymbolInitializer.symbolInitializer(CollectionHomeActivity.this);
                 GridSymbolAdapter gridSymbolAdapter = new GridSymbolAdapter(CollectionHomeActivity.this, expansionSymbols);
                 gridView.setAdapter(gridSymbolAdapter);
+                addOnClickListener();
             }
         });
     }
@@ -105,8 +110,30 @@ public class CollectionHomeActivity extends AppCompatActivity {
         }
     }
 
+    private void addOnClickListener() {
+        buttonsInGrid = new ArrayList<>();
+        GridView gridView = findViewById(R.id.mainGrid);
+        for (int i = 0; i < gridView.getChildCount(); i++) {
+            Button button = (Button)gridView.getChildAt(i);
+            button.setOnClickListener(new ButtonClickListener());
+            buttonsInGrid.add(button);
+        }
+    }
+
     public void startCollectionActivity(View view) {
-        Intent intent = new Intent(this, CollectionActivity.class);
+        /*GridView gridView = findViewById(R.id.mainGrid);
+        GridView grid = view.findViewWithTag()
+        System.out.println(gridView.getChildCount() + "  ++++++++++++++++++++++++++++++++++++++++++++++");*/
+        Button button = (Button)view;
+        System.out.println(button.getTag().toString());
+        Intent intent = new Intent(this, CollectionActivity.class).putExtra("<StringName>", button.getTag().toString());
         startActivity(intent);
+    }
+
+    class ButtonClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            startCollectionActivity(v);
+        }
     }
 }
