@@ -1,19 +1,17 @@
-package se.dala.mtg_collection_app;
+package se.dala.mtg_collection_app.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.GridLayout;
+import android.widget.Button;
 import android.widget.GridView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,13 +21,24 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+
+import se.dala.mtg_collection_app.R;
+import se.dala.mtg_collection_app.SignInActivity;
+import se.dala.mtg_collection_app.activity.adapters.GridSymbolAdapter;
+import se.dala.mtg_collection_app.activity.views.CustomButton;
+import se.dala.mtg_collection_app.init.ExpansionSymbolInitializer;
+import se.dala.mtg_collection_app.model.Expansion;
+import se.dala.mtg_collection_app.model.ExpansionSymbol;
 
 public class CollectionHomeActivity extends AppCompatActivity {
 
     private FirebaseAuth authentication;
     private FirebaseUser currentUser;
     private List<String> sets = new ArrayList<>();
+    private List<ExpansionSymbol> expansionSymbols;
+    List<Button> buttonsInGrid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +54,20 @@ public class CollectionHomeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitle("");
         toolbar.setSubtitle("");
+        expansionSymbols = ExpansionSymbolInitializer.symbolInitializer(CollectionHomeActivity.this);
+        updateUI();
+    }
 
-        /*GridLayout grid = findViewById(R.id.mainGrid);
-        for (String set : sets) {
-            grid.addView(findViewById(R.id.test_text));
-        }*/
-
+    private void updateUI() {
+        CollectionHomeActivity.this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                GridView gridView = findViewById(R.id.mainGrid);
+                GridSymbolAdapter gridSymbolAdapter = new GridSymbolAdapter(CollectionHomeActivity.this, expansionSymbols);
+                gridView.setAdapter(gridSymbolAdapter);
+                addOnClickListener();
+            }
+        });
     }
 
     @Override
@@ -61,7 +78,6 @@ public class CollectionHomeActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_home, menu);
         return true;
     }
@@ -94,12 +110,30 @@ public class CollectionHomeActivity extends AppCompatActivity {
         }
     }
 
-    private void setGrid() {
-
+    private void addOnClickListener() {
+        buttonsInGrid = new ArrayList<>();
+        GridView gridView = findViewById(R.id.mainGrid);
+        for (int i = 0; i < gridView.getChildCount(); i++) {
+            Button button = (Button)gridView.getChildAt(i);
+            button.setOnClickListener(new ButtonClickListener());
+            buttonsInGrid.add(button);
+        }
     }
 
     public void startCollectionActivity(View view) {
-        Intent intent = new Intent(this, CollectionActivity.class);
+        /*GridView gridView = findViewById(R.id.mainGrid);
+        GridView grid = view.findViewWithTag()
+        System.out.println(gridView.getChildCount() + "  ++++++++++++++++++++++++++++++++++++++++++++++");*/
+        Button button = (Button)view;
+        System.out.println(button.getTag().toString());
+        Intent intent = new Intent(this, CollectionActivity.class).putExtra("<StringName>", button.getTag().toString());
         startActivity(intent);
+    }
+
+    class ButtonClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            startCollectionActivity(v);
+        }
     }
 }

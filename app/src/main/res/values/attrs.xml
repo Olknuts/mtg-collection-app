@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="CustomTextView_font">
+    <declare-styleable name="CustomButtonText_font">
         <attr name="fontName" format="string" />
     </declare-styleable>
 
